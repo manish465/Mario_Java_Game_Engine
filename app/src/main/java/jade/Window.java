@@ -67,6 +67,7 @@ public class Window {
         GLFW.glfwSetCursorPosCallback(glfwWindow, MouseListener::mousePosCallback);
         GLFW.glfwSetMouseButtonCallback(glfwWindow, MouseListener::mouseButtonCallback);
         GLFW.glfwSetScrollCallback(glfwWindow, MouseListener::mouseScrollCallback);
+        GLFW.glfwSetKeyCallback(glfwWindow, KeyListener::keyCallback);
 
         // Make the OpenGL context current
         GLFW.glfwMakeContextCurrent(glfwWindow);
