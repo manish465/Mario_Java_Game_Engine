@@ -5,6 +5,7 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.glfw.Callbacks;
 import org.lwjgl.glfw.GLFW;
 
 public class Window {
@@ -32,6 +33,15 @@ public class Window {
 
         init();
         loop();
+
+        // Free the memory after exit
+        Callbacks.glfwFreeCallbacks(glfwWindow);
+        GLFW.glfwDestroyWindow(glfwWindow);
+
+        // Terminate GLFW and free the error callback
+        GLFW.glfwTerminate();
+        GLFW.glfwSetErrorCallback(null).free();
+
     }
 
     public void init() {
@@ -75,7 +85,7 @@ public class Window {
             // Poll events
             GLFW.glfwPollEvents();
 
-            GL11.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+            GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.6f);
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
             GLFW.glfwSwapBuffers(glfwWindow);
         }
