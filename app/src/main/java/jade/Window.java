@@ -63,7 +63,12 @@ public class Window {
         if (glfwWindow == MemoryUtil.NULL)
             throw new IllegalStateException("Failed to create glfw wind");
 
-        // Make OpenGL contex current
+        // Event listenr
+        GLFW.glfwSetCursorPosCallback(glfwWindow, MouseListener::mousePosCallback);
+        GLFW.glfwSetMouseButtonCallback(glfwWindow, MouseListener::mouseButtonCallback);
+        GLFW.glfwSetScrollCallback(glfwWindow, MouseListener::mouseScrollCallback);
+
+        // Make the OpenGL context current
         GLFW.glfwMakeContextCurrent(glfwWindow);
 
         // Enable v-sync
